@@ -22,6 +22,7 @@ sudo systemctl start mysql
 
 # Secure installation (set root password, remove test DB, etc.)
 sudo mysql_secure_installation
+mysql -uroot -pStrongPass123! -e "SELECT VERSION();"
 ```
 
 download BCM10 from https://customer.brightcomputing.com/download-iso
