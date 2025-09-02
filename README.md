@@ -3,6 +3,7 @@
 - AMI name: ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250821
 - t3.xlarge
 - 200GB gp3 ebs volume
+- ansible controller and target are same host
 
 # Install Ansible
 ```bash
@@ -12,6 +13,20 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 ```
 
+# Install Ansible
+```bash
+sudo DEBIAN_FRONTEND=noninteractive apt install -y mysql-server
+# Enable & start the service
+sudo systemctl enable mysql
+sudo systemctl start mysql
+
+# Secure installation (set root password, remove test DB, etc.)
+sudo mysql_secure_installation
+```
+
+download BCM10 from https://customer.brightcomputing.com/download-iso
+have your bcm product key ready
+it takes 10-40 minutes for NVIDIA to generate a download url
 
 # Install BCM10 Ansible Installer
 ```bash

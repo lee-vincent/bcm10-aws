@@ -9,8 +9,8 @@
     - role: brightcomputing.installer100.head_node
       vars:
         # ── Mandatory license/product parameters ──
+        install_medium: "local"
         product_key: "XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"
-
         license:
           country: "US"
           state: "Massachusetts"
@@ -18,4 +18,10 @@
           organization: "AHEAD"
           organizational_unit: "HPC"
           cluster_name: "mgburn"
-          mac: "02:42:ac:11:00:02"
+          mac: "0a:ff:e2:16:bf:9f"
+        db_cmd_password: "ahead"
+        management_interface: "ahead"
+        ldap_root_pass: "ahead"
+        ldap_readonly_pass: "ahead"
+        slurm_user_pass: "ahead"
+
