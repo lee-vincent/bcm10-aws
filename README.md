@@ -1,12 +1,8 @@
-Base Command Manager 10 Setup on AWS
-Ansible Add-On Method
+# NVIDIA Base Command Manager 10 Install on AWS EC2 (Ansible Add-On Method)
 
-AMI name: ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250821
-t3.xlarge
-200GB gp3 ebs volume
-
-Install Ansible
-# NVIDIA Base Command Manager 10 on AWS (Add-On Ansible Install)
+- AMI name: ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250821
+- t3.xlarge
+- 200GB gp3 ebs volume
 
 Provision an AWS VPC and a head-node EC2 instance, then install **NVIDIA Base Command Manager 10 (BCM 10)** using the **Ansible add-on method**.
 
