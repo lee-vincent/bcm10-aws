@@ -1,0 +1,21 @@
+---
+- name: Install BCM10 head node (Ansible add-on)
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+
+  roles:
+    - role: brightcomputing.installer100.head_node
+      vars:
+        # ── Mandatory license/product parameters ──
+        product_key: "XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"
+
+        license:
+          country: "US"
+          state: "Massachusetts"
+          locality: "Boston"
+          organization: "AHEAD"
+          organizational_unit: "HPC"
+          cluster_name: "mgburn"
+          mac: "02:42:ac:11:00:02"

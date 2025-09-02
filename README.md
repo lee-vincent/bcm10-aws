@@ -4,6 +4,23 @@
 - t3.xlarge
 - 200GB gp3 ebs volume
 
+# Install Ansible
+```bash
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
+```
+
+
+# Install BCM10 Ansible Installer
+```bash
+ansible-galaxy collection install brightcomputing.installer100p
+```
+
+
+
+
 Provision an AWS VPC and a head-node EC2 instance, then install **NVIDIA Base Command Manager 10 (BCM 10)** using the **Ansible add-on method**.
 
 > **Why this repo?**  
