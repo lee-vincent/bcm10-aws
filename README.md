@@ -13,7 +13,8 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 ```
 
-# Install Ansible
+# Install mysql
+- this should probably be done with ansible?
 ```bash
 sudo DEBIAN_FRONTEND=noninteractive apt install -y mysql-server
 # Enable & start the service
@@ -21,9 +22,28 @@ sudo systemctl enable mysql
 sudo systemctl start mysql
 
 # Secure installation (set root password, remove test DB, etc.)
-sudo mysql_secure_installation
-mysql -uroot -pStrongPass123! -e "SELECT VERSION();"
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'StrongPass123!'; FLUSH PRIVILEGES;"
+
+# 0) (optional) pick a strong password that meets current policy
+ROOT_PW='Ahead123^'   # change me
+
+# 1) If you want password auth for root (instead of unix_socket):
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${ROOT_PW}';"
+
+# 2) Remove anonymous users
+sudo mysql -e "DELETE FROM mysql.user WHERE User='';"
+
+# 3) Disallow remote root login (keep only localhost variants)
+sudo mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost','127.0.0.1','::1');"
+
+# 4) Remove test DB and its privileges
+sudo mysql -e "DROP DATABASE IF EXISTS test;"
+sudo mysql -e "DELETE FROM mysql.db WHERE Db IN ('test', 'test\\_%');"
+
+# 5) Reload privilege tables
+sudo mysql -e "FLUSH PRIVILEGES;"
+
+# 6) (optional) Verify it worked
+mysql -uroot -p"${ROOT_PW}" -e "SELECT VERSION();"
 
 ```
 

@@ -1,0 +1,55 @@
+---
+- name: Harden MySQL like mysql_secure_installation
+  hosts: localhost
+  become: true
+  connection: local
+  vars:
+    root_pw: "Ahead123^!"   # change me
+  tasks:
+    - name: Ensure MySQL Python bindings are present
+      apt:
+        name: python3-pymysql
+        state: present
+        update_cache: yes
+
+    - name: Switch root to password auth and set password
+      community.mysql.mysql_user:
+        name: root
+        host: localhost
+        password: "{{ root_pw }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        plugin: mysql_native_password
+        state: present
+
+    - name: Remove anonymous users
+      community.mysql.mysql_user:
+        name: ''
+        host_all: true
+        state: absent
+        login_user: root
+        login_password: "{{ root_pw }}"
+
+    - name: Restrict root to local hosts only
+      community.mysql.mysql_user:
+        name: root
+        host: "{{ item }}"
+        state: present
+        login_user: root
+        login_password: "{{ root_pw }}"
+      loop:
+        - localhost
+        - 127.0.0.1
+        - '::1'
+
+    - name: Remove any root@other-host entries
+      command: >
+        mysql -uroot -p{{ root_pw }} -e
+        "DELETE FROM mysql.user WHERE User='root'
+         AND Host NOT IN ('localhost','127.0.0.1','::1'); FLUSH PRIVILEGES;"
+
+    - name: Drop test database if exists
+      community.mysql.mysql_db:
+        name: test
+        state: absent
+        login_user: root
+        login_password: "{{ root_pw }}"
