@@ -25,4 +25,26 @@
         ldap_root_pass: "Ahead123^"
         ldap_readonly_pass: "Ahead123^"
         slurm_user_pass: "Ahead123^"
+        
+        mysql_login_user: "root"
+        mysql_login_password: "Ahead123^"
+        mysql_login_host: "localhost"
+        mysql_login_port: 3306
+        mysql_login_unix_socket: "/var/run/mysqld/mysqld.sock"
+
+        aws_cloud_provider_username
+        aws_cloud_provider_account_id
+        aws_cloud_provider_access_key_id
+        aws_cloud_provider_access_key_secret
+        aws_cloud_provider_default_region
+        aws_cloud_provider_default_type
+        aws_cloud_provider_image_owners
+        aws_cloud_provider_ec2vpc_name
+        aws_cloud_provider_ec2vpc_region
+        aws_cloud_provider_ec2vpc_vpc_id
+        aws_public_network_cloud_subnet_id
+        aws_private_network_cloud_subnet_id
+        aws_cloud_provider_ec2vpc_security_group_node
+        aws_cloud_provider_ec2vpc_security_group_director
+
 
