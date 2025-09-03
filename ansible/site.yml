@@ -9,7 +9,8 @@
     - role: brightcomputing.installer100.head_node
       vars:
         # ── Mandatory license/product parameters ──
-        install_medium: "local"
+        install_medium: "dvd"
+        install_medium_dvd_path: "/home/ubuntu/bcm-10.0-ubuntu2404.iso"
         product_key: "XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"
         license:
           country: "US"
